@@ -28,6 +28,9 @@ public class GravestoneBlock extends FakeBlock implements BlockEntityProvider {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
+        if (world.isClient()) {
+            return;
+        }
         if (blockEntity instanceof  GravestoneBlockEntity) {
             GravestoneBlockEntity graveEntity = (GravestoneBlockEntity)blockEntity;
             graveEntity.drop();
@@ -44,7 +47,9 @@ public class GravestoneBlock extends FakeBlock implements BlockEntityProvider {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (hand == Hand.MAIN_HAND) {
-            ((GravestoneBlockEntity) world.getBlockEntity(pos)).sendDeathInfo(player);
+            if (world.isClient() == false) {
+                ((GravestoneBlockEntity) world.getBlockEntity(pos)).sendDeathInfo(player);
+            }
             return ActionResult.SUCCESS;
 
         } else {

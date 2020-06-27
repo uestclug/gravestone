@@ -1,9 +1,5 @@
-# Fabric Example Mod
+# Gravestone mod
 
-## Setup
+A server side gravestone mod for fabric.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Only need to be installed on the server side, the vanilla client can directly connect to the server where the mod is installed.

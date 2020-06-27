@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.plusls.gravestone.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ArrayPaletteMixin",
+    "BiMapPaletteMixin",
+    "ChunkDataS2CPacketMixin",
+    "ChunkDeltaRecordMixin",
+    "PlayerActionResponseS2CPacketMixin",
+    "PlayerEntityMixin",
+    "BlockUpdateS2CPacketMixin",
+    "invoker.PlayerEntityInvoker"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

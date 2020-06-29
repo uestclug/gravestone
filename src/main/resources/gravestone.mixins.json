@@ -4,8 +4,7 @@
   "package": "io.github.plusls.gravestone.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ArrayPaletteMixin",
-    "BiMapPaletteMixin",
+    "PalettedContainerMixin",
     "ChunkDataS2CPacketMixin",
     "ChunkDeltaRecordMixin",
     "PlayerActionResponseS2CPacketMixin",

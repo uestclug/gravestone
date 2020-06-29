@@ -2,6 +2,8 @@
 
 A server side gravestone mod for fabric.
 
+Support minecraft 1.16.x.
+
 ## Install
 
 ### Server

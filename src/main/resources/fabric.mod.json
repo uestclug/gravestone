@@ -4,17 +4,19 @@
   "version": "${version}",
 
   "name": "Gravestone",
-  "description": "Gravestone",
+  "description": "A server side gravestone mod for fabric.",
   "authors": [
     "plusls"
   ],
   "contact": {
     "homepage": "https://blog.plusls.com/",
-    "sources": "https://github.com/plusls/gravestone"
+    "sources": "https://github.com/plusls/gravestone",
+    "issues ": "https://github.com/uestclug/gravestone/issues",
+    "sources": "https://github.com/uestclug/gravestone"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/gravestone/icon.png",
+  "icon": "assets/gravestone_mod/icon.png",
 
   "environment": "*",
   "entrypoints": {

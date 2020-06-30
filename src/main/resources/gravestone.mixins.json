@@ -4,6 +4,7 @@
   "package": "io.github.plusls.gravestone.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "RegistrySyncManagerMixin",
     "PalettedContainerMixin",
     "ChunkDataS2CPacketMixin",
     "ChunkDeltaRecordMixin",

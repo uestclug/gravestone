@@ -1,24 +1,48 @@
 # Gravestone mod
 
+[README](README.md) | [中文文档](README_zh.md)
+
 A server side gravestone mod for fabric.
 
 Support minecraft 1.16.x.
 
-## Install
+CurseForge: https://www.curseforge.com/minecraft/mc-mods/gravestone
 
-### Server
+
+## Description
+
+After the player dies, a gravestone with the skin of the player will be placed.
+
+![player_dead](./doc/player_dead.gif)
+
+Play Skin:
+
+![skin](./doc/skin.png)
+
+The shape of gravestone:
+
+![skin](./doc/gravestone.png)
+
+Player's items will be saved in the gravestone.Items with "Curse of Vanishing" will disappear after the player dies.
+
+The xp of player will be divided by 2 and placed in the tombstone.
+
+After the gravestone is broke, the items and xp in the gravestone will drop to the world.
+
+![player_dead](./doc/break_gravestone.gif)
+
+
+## Install
 
 Only need copy gravestone mod to mods dir.
 
-### Client
+When the mod is installed on the server, the client can use it without installing this mod.
 
-#### Vanilla Client
+The vanilla client and the fabric client without this mod can directly connect to the server which installed this mod.
 
-Not need install this mod.
 
-#### Fabric Client
+## Thanks
 
-Need install this mod, because fabric api will check Block Registry.
+yet-another-gravestone-mod: https://github.com/Nuclearfarts/yet-another-gravestone-mod
 
-Need install this mod to bypass it.
-
+ServerAdditionsUtil: https://github.com/ExtraCrafTX/ServerAdditionsUtil

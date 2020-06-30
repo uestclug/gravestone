@@ -28,6 +28,8 @@ CurseForge: https://www.curseforge.com/minecraft/mc-mods/gravestone
 
 在墓碑被破坏后墓碑中的物品和经验会掉落在地上
 
+右键墓碑会显示死亡信息
+
 ![player_dead](./doc/break_gravestone.gif)
 
 ## 安装

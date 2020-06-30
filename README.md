@@ -29,6 +29,8 @@ The xp of player will be divided by 2 and placed in the tombstone.
 
 After the gravestone is broke, the items and xp in the gravestone will drop to the world.
 
+Right click the gravestone will display the death message.
+
 ![player_dead](./doc/break_gravestone.gif)
 
 

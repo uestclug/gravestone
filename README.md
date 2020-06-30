@@ -15,7 +15,7 @@ After the player dies, a gravestone with the skin of the player will be placed.
 
 ![player_dead](./doc/player_dead.gif)
 
-Play Skin:
+Player skin:
 
 ![skin](./doc/skin.png)
 

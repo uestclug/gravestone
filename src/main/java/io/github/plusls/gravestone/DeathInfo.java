@@ -2,6 +2,7 @@ package io.github.plusls.gravestone;
 
 import com.mojang.authlib.GameProfile;
 import io.github.plusls.gravestone.util.GravestoneUtil;
+import jdk.nashorn.internal.ir.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -10,6 +11,8 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.nbt.NbtHelper;
+import net.minecraft.util.math.BlockPos;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +66,17 @@ public class DeathInfo {
     }
 
     public void sendDeathInfo(PlayerEntity player) {
-        String message = String.format("Owner: %s\nDeathMessage: %s\nDeathTime: %s",
-                this.owner.getName(), this.deathMessage.getString(), GravestoneUtil.timeToString(this.deathTime));
-        player.sendMessage(new LiteralText(message), false);
+        player.sendMessage(new LiteralText(this.getDeathInfo()), false);
+    }
+    public String getDeathInfo() {
+        ListTag list = new ListTag();
+        for(ItemStack s : this.inventory) {
+            if(!s.isEmpty()) {
+                list.add(s.toTag(new CompoundTag()));
+            }
+        }
+        return String.format("Owner: %s\nDeathMessage: %s\nDeathTime: %s\n Items: %s",
+                this.owner.getName(), this.deathMessage.getString(),
+                GravestoneUtil.timeToString(this.deathTime), list.toText().getString());
     }
 }

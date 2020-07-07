@@ -1,15 +1,18 @@
 package io.github.plusls.gravestone.util;
 
 import io.github.plusls.gravestone.DeathInfo;
+import io.github.plusls.gravestone.GravestoneMod;
 import io.github.plusls.gravestone.block.entity.GravestoneBlockEntity;
 import io.github.plusls.gravestone.mixin.invoker.PlayerEntityInvoker;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AutomaticItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.ServerTask;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -46,8 +49,10 @@ public class GravestoneUtil {
             player.experienceLevel = 0;
             BlockPos gravePos = findGravePos(player);
             world.getServer().send(new ServerTask(world.getServer().getTicks(),
-                    placeGraveRunnable(world, gravePos,
-                            new DeathInfo(player.getGameProfile(), deathMessage, System.currentTimeMillis(), xp, items))));
+                    placeGraveRunnable(world,
+                            gravePos,
+                            new DeathInfo(player.getGameProfile(), deathMessage, System.currentTimeMillis(), xp, items),
+                            player)));
 
         }
     }
@@ -133,10 +138,24 @@ public class GravestoneUtil {
         return pos;
     }
 
-    public static Runnable placeGraveRunnable(World world, BlockPos pos, DeathInfo deathInfo) {
+    public static Runnable placeGraveRunnable(World world, BlockPos pos, DeathInfo deathInfo, PlayerEntity player) {
         return () -> {
             BlockState graveBlock = GRAVESTONE_BLOCK.getDefaultState();
-            world.setBlockState(pos, graveBlock);
+            GravestoneMod.LOGGER.info(String.format("Player dead at %d %d %d\nmessage: %s",
+                    pos.getX(), pos.getY(), pos.getZ(),
+                    deathInfo.getDeathInfo()));
+
+            // send pos
+            player.sendMessage(new LiteralText(String.format("Your gravestone at %d %d %d",
+                    pos.getX(), pos.getY(), pos.getZ())), false);
+            // send death info
+            deathInfo.sendDeathInfo(player);
+
+            // avoid setblockstate fail.
+            while (world.setBlockState(pos, graveBlock) == false) {
+                GravestoneMod.LOGGER.warn(String.format("set gravestone at %d %d %d fail, try again.",
+                        pos.getX(), pos.getY(), pos.getZ()));
+            }
             GravestoneBlockEntity graveEntity = (GravestoneBlockEntity)world.getBlockEntity(pos);
             graveEntity.setDeathInfo(deathInfo);
             graveEntity.markDirty();

@@ -4,12 +4,11 @@
   "package": "io.github.plusls.gravestone.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "RegistrySyncManagerMixin",
     "PalettedContainerMixin",
-    "ChunkDataS2CPacketMixin",
-    "ChunkDeltaRecordMixin",
+    "MixinChunkDataS2CPacket",
+    "MixinChunkDeltaUpdateS2CPacket",
     "PlayerActionResponseS2CPacketMixin",
-    "PlayerEntityMixin",
+    "MixinServerPlayerEntity",
     "BlockUpdateS2CPacketMixin",
     "invoker.PlayerEntityInvoker"
   ],

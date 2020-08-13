@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ChunkDataS2CPacket.class)
-public abstract class ChunkDataS2CPacketMixin extends Object {
+public abstract class MixinChunkDataS2CPacket extends Object {
 
     // hook block entity packet
-    @Redirect(method="<init>(Lnet/minecraft/world/chunk/WorldChunk;IZ)V",
-            at=@At(value = "INVOKE", target="Lnet/minecraft/block/entity/BlockEntity;toInitialChunkDataTag()Lnet/minecraft/nbt/CompoundTag;", ordinal=0))
-    private CompoundTag upgradeCompoundTag(BlockEntity blockEntity){
+    @Redirect(method = "<init>(Lnet/minecraft/world/chunk/WorldChunk;I)V",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/BlockEntity;toInitialChunkDataTag()Lnet/minecraft/nbt/CompoundTag;", ordinal = 0))
+    private CompoundTag upgradeCompoundTag(BlockEntity blockEntity) {
 
         if (blockEntity instanceof FakeBlockEntity) {
             return ((FakeBlockEntity) blockEntity).toInitialClientChunkDataTag();

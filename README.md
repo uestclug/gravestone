@@ -1,5 +1,7 @@
 # Gravestone mod
 
+# See https://github.com/plusls/plusls-carpet-addition#%E5%A2%93%E7%A2%91-gravestone
+
 [README](README.md) | [中文文档](README_zh.md)
 
 A server side gravestone mod for fabric.
